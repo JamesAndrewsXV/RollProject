@@ -10,14 +10,16 @@ public class PlayerController : MonoBehaviour
     private int count;
     public Text countText;
     public Text winText;
-    private bool isGrounded = true;
+    public bool isGrounded = true;
     private bool isLevelOver = false;
+    public float jumpForce;
 
     
     private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
+        jumpForce = 200;
         rb = GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0, 0, 0);
         count = 0;
@@ -47,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
-                rb.AddForce(0, 100, 0);
+                rb.AddForce(0, jumpForce, 0);
             }
         }
         else
@@ -90,9 +92,9 @@ public class PlayerController : MonoBehaviour
             winText.text = "You Win!";
         }
     }
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.name == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             isGrounded = true;
         }
@@ -100,7 +102,7 @@ public class PlayerController : MonoBehaviour
     
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.name == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             isGrounded = false;
         }
