@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
 
     private int count;
+    private int numCollectables = 0;
     public Text countText;
     public Text winText;
     public bool isGrounded = true;
@@ -28,12 +29,13 @@ public class PlayerController : MonoBehaviour
         startPos.y += 0.9f;
         this.GetComponent<Transform>().localPosition = startPos;
         foreach(GameObject g in Resources.FindObjectsOfTypeAll(typeof(GameObject)))
-        { 
-            if(g.CompareTag("Pick Up") && !(g.activeSelf)) {
+        {
+            if (g.CompareTag("Pick Up") && !(g.activeSelf))
+            {
                 g.SetActive(true);
             }
-            
         }
+        numCollectables = GameObject.FindGameObjectsWithTag("Pick Up").Length;
     }
 
     void FixedUpdate()
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour
         }
         else if(other.gameObject.CompareTag("End"))
         {
-            if (count == 12)
+            if (count == numCollectables)
             {
                 isLevelOver = true;
             }
@@ -88,7 +90,7 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
-        if(count == 12 && isLevelOver)
+        if(count == numCollectables && isLevelOver)
         {
             winText.text = "You Win!";
         }
