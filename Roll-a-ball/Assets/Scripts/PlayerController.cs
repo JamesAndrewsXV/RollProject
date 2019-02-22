@@ -12,14 +12,13 @@ public class PlayerController : MonoBehaviour
     public Text winText;
     public bool isGrounded = true;
     private bool isLevelOver = false;
-    public float jumpForce;
+    private float jumpForce = 300;
 
     
     private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        jumpForce = 200;
         rb = GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0, 0, 0);
         count = 0;
