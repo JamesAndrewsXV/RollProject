@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 841f3008830e6cf4185708eb86708db0
+guid: 752b86e3d4419404087efa9f597a7be2
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -11,7 +11,8 @@ TrueTypeFontImporter:
   fontName: Cartoonist
   fontNames:
   - Cartoonist
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3dc409852f2d55a4aa68ca91e6c941b4, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
